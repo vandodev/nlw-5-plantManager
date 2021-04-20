@@ -3,6 +3,7 @@ import {SafeAreaView, Text, View, StyleSheet, Image, TouchableOpacity, Dimension
 
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
+import {Feather} from '@expo/vector-icons';
 
 export  function Welcome(){
     return(
@@ -15,7 +16,7 @@ export  function Welcome(){
             <Text style={styles.subtitle}>Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você sempre que precisar.</Text>
 
             <TouchableOpacity style={styles.button} activeOpacity={0.7}>
-              <Text style={styles.buttonText}>></Text>
+              <Text> <Feather name="chevron-right"  style={styles.buttonIcon} /></Text>
            </TouchableOpacity>
             
 
@@ -58,10 +59,9 @@ export  function Welcome(){
       width: 56,
     },
   
-    buttonText: {
+    buttonIcon: {
+      fontSize: 32,
       color: colors.white,
-      fontSize: 24,
-      paddingHorizontal: 10,
     },
 
   });
