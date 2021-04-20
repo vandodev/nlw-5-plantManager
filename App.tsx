@@ -1,7 +1,8 @@
 import React from 'react';
 import AppLoading from 'expo-app-loading';
 // import { Welcome } from './src/pages/Welcome';
-import { UserIdentification } from './src/pages/UserIdentification';
+// import { UserIdentification } from './src/pages/UserIdentification';
+import { Confirmation } from './src/pages/Confirmation';
 import {
   useFonts,
   Jost_400Regular,
@@ -21,6 +22,7 @@ if(!fontsLoaded){
 
   return(
     // <Welcome />
-    <UserIdentification />
+    // <UserIdentification />
+    <Confirmation />
   );
 }
