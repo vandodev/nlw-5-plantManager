@@ -1,8 +1,7 @@
 import React from 'react';
-import {SafeAreaView, Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Text, View, StyleSheet, Image, TouchableOpacity, Dimensions} from 'react-native';
 
-import wateringImg from '../assets/watering.png'
-import { Button } from '../components/Button';
+import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
 
 export  function Welcome(){
@@ -11,11 +10,13 @@ export  function Welcome(){
 
             <Text style={styles.title}>Gerencie {'\n'} suas plantas  {'\n'}  de forma fácíl</Text>
             
-            <Image source={wateringImg} style={styles.image}/>
+            <Image source={wateringImg} resizeMode='contain' style={styles.image}/>
 
             <Text style={styles.subtitle}>Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você sempre que precisar.</Text>
 
-            <Button title=">" />
+            <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+              <Text style={styles.buttonText}>></Text>
+           </TouchableOpacity>
             
 
         </SafeAreaView> 
@@ -26,7 +27,7 @@ export  function Welcome(){
     container: {
       flex: 1,
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "space-around",
     },
   
     title: {
@@ -44,8 +45,23 @@ export  function Welcome(){
       color: colors.heading,
     },
     image: {
-      width: 292,
-      height: 284,
+      height: Dimensions.get('window').width*0.7,
+    },
+    button: {
+      backgroundColor: colors.green,
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 16,
+      marginBottom: 18,
+      marginTop: 18,
+      height: 56,
+      width: 56,
+    },
+  
+    buttonText: {
+      color: colors.white,
+      fontSize: 24,
+      paddingHorizontal: 10,
     },
 
   });
