@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, FlatList} from 'react-native';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -26,7 +26,18 @@ export function PlantSelect() {
 
             </View>
             
-            <EnvironmentButton title="Cozinha" active/>
+            <View>
+                <FlatList
+                 data={[1,2,3]}
+                 renderItem={({item}) =>(
+                    <EnvironmentButton title="Cozinha" active/>
+                 )}
+                 horizontal
+                 showsHorizontalScrollIndicator={false}
+                 contentContainerStyle={styles.environmentList}
+                />
+            </View>
+            
 
         </View>
     );
@@ -55,6 +66,13 @@ const styles = StyleSheet.create({
         fontSize: 17,
         lineHeight: 20,
         color: colors.heading
+    },
+    
+    environmentList: {
+        height: 40,
+        justifyContent: 'center',
+        paddingBottom: 5,
+        marginVertical: 32
     },
    
   })
