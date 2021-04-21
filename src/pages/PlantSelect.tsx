@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList} from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator} from 'react-native';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -147,7 +147,11 @@ export function PlantSelect() {
                     numColumns={2} 
                     onEndReachedThreshold={0.1}
                     onEndReached={({ distanceFromEnd }) => handleFetchMore(distanceFromEnd)}
-                             
+                    ListFooterComponent={
+                        loadingMore
+                        ? <ActivityIndicator color={colors.green} />
+                        : <></>
+                    }         
 
                 />
             </View>
