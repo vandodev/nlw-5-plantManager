@@ -8,19 +8,34 @@ import fonts from '../styles/fonts';
 import {Header} from '../components/Header'
 import { EnvironmentButton } from '../components/EnvironmentButton';
 import api from '../services/api';
+import { PlantCardPrimary } from '../components/PlantCardPrimary';
 
 interface EnvironmentProps {
     key: string;
     title: string;
 }
 
+interface PlantProps {
+    id: string;
+    name:  string;
+    about:  string;
+    water_tips:  string;
+    photo: string;
+    environments: [string];
+    frequency: {
+      times: number;
+      repeat_every: string;
+    }
+}
+
 export function PlantSelect() { 
     const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
+    const [plants, setPlants] = useState<PlantProps[]>([]);
 
     useEffect(() => {
         async function fetchEnvironment() {
           const { data } = await api.get('plants_environments');
-    
+              
           setEnvironments([
             {
               key: 'all',
@@ -31,8 +46,17 @@ export function PlantSelect() {
         }
     
         fetchEnvironment();
-      }, [])
+    }, [])
     
+    useEffect(() => {
+        async function fetchPlants() {
+          const { data } = await api.get('Plants');
+              
+          setPlants(data);
+        }
+    
+        fetchPlants();
+    }, [])
 
     return(
         <View style={styles.container}>
@@ -63,6 +87,17 @@ export function PlantSelect() {
                 />
             </View>
             
+            <View style={styles.plants}>
+                <FlatList 
+                    data={plants}
+                    renderItem={({ item }) => (
+                        <PlantCardPrimary data={item} />
+                    )}
+                    showsVerticalScrollIndicator={false}
+                    numColumns={2}                 
+
+                />
+            </View>
 
         </View>
     );
@@ -99,5 +134,11 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
         marginVertical: 32
     },
+
+    plants: {
+        flex: 1,
+        paddingHorizontal: 32,
+        justifyContent: 'center'
+    }
    
   })
