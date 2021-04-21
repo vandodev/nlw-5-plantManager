@@ -6,6 +6,7 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 import {Header} from '../components/Header'
+import { EnvironmentButton } from '../components/EnvironmentButton';
 
 export function PlantSelect() { 
     return(
@@ -25,6 +26,7 @@ export function PlantSelect() {
 
             </View>
             
+            <EnvironmentButton title="Cozinha" active/>
 
         </View>
     );
