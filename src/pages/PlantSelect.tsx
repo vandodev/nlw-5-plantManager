@@ -21,7 +21,13 @@ export function PlantSelect() {
         async function fetchEnvironment() {
           const { data } = await api.get('plants_environments');
     
-          setEnvironments(data);
+          setEnvironments([
+            {
+              key: 'all',
+              title: 'Todos'
+            },
+            ...data
+          ]);
         }
     
         fetchEnvironment();
