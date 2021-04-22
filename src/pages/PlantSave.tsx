@@ -1,3 +1,4 @@
+import { useRoute } from "@react-navigation/core";
 import React from "react";
 import {
   Image,
@@ -14,24 +15,38 @@ import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
+  interface Params {
+    plant:{
+      id: string;
+      name:  string;
+      about:  string;
+      water_tips:  string;
+      photo: string;
+      environments: [string];
+      frequency: {
+        times: number;
+        repeat_every: string;
+      }
+    }
+  }
+
 export function PlantSave() {
- 
+ const route = useRoute();
+ const {plant} =  route.params as Params;
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.container}>
       <View style={styles.container}>
         <View style={styles.plantInfo}>
-          <SvgFromUri uri={''} height={150} width={150} />
+          <SvgFromUri uri={plant.photo} height={150} width={150} />
 
-          <Text style={styles.plantName}>Nome da planta</Text>
-          <Text style={styles.plantAbout}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam atque voluptates dicta distinctio obcaecati, ipsum odio cupiditate dolores fugiat molestiae quos unde consequatur aliquam error architecto nisi ipsa sapiente eum?
-          </Text>
+          <Text style={styles.plantName}>{plant.name}</Text>
+          <Text style={styles.plantAbout}>{plant.about}</Text>
         </View>
 
         <View style={styles.controller}>
           <View style={styles.tipContainer}>
             <Image source={waterdrop} style={styles.tipImage} />
-            <Text style={styles.tipText}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia corrupti nam magni </Text>
+            <Text style={styles.tipText}>{plant.water_tips}</Text>
           </View>
 
           <Text style={styles.alertLabel}>

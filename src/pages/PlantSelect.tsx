@@ -12,6 +12,7 @@ import api from '../services/api';
 import { PlantCardPrimary } from '../components/PlantCardPrimary';
 import { useNavigation } from '@react-navigation/core';
 
+
 interface EnvironmentProps {
     key: string;
     title: string;
@@ -84,6 +85,7 @@ export function PlantSelect() {
       }
 
       function handlePlantSelect(plant: PlantProps) {
+        //o {plant} é para passar os dados para outra tela
         navigation.navigate('PlantSave', { plant });
       }
 
