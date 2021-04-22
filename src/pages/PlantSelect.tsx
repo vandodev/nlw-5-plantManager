@@ -10,6 +10,7 @@ import { Load } from '../components/Load';
 import { EnvironmentButton } from '../components/EnvironmentButton';
 import api from '../services/api';
 import { PlantCardPrimary } from '../components/PlantCardPrimary';
+import { useNavigation } from '@react-navigation/core';
 
 interface EnvironmentProps {
     key: string;
@@ -38,6 +39,8 @@ export function PlantSelect() {
 
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
+
+    const navigation = useNavigation();
     
 
     function handleEnvironmentSelected(environment: string) {
@@ -78,6 +81,10 @@ export function PlantSelect() {
         setLoadingMore(true);
         setPage(oldValue => oldValue + 1);
         fetchPlants();
+      }
+
+      function handlePlantSelect(plant: PlantProps) {
+        navigation.navigate('PlantSave', { plant });
       }
 
     useEffect(() => {
@@ -143,7 +150,9 @@ export function PlantSelect() {
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => (
                         <PlantCardPrimary
-                         data={item} />
+                         data={item}
+                         onPress={() => handlePlantSelect(item)}
+                        />
                     )}
                     showsVerticalScrollIndicator={false}
                     numColumns={2} 
