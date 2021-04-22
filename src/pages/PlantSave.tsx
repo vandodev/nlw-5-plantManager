@@ -19,7 +19,7 @@ import waterdrop from "../assets/waterdrop.png";
 import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { PlantProps } from "../libs/storage";
+import { loadPlant, PlantProps, savePlant } from "../libs/storage";
 
   interface Params {
     plant:PlantProps
@@ -48,7 +48,21 @@ export function PlantSave() {
  }
 
  function handleOpenDatetimePickerForAndroid() {
-  setShowDatePicker((oldState) => !oldState);
+  setShowDatePicker(oldState => !oldState);
+}
+
+async function handleSave() {
+  const data = await loadPlant();
+  console.log(data);
+  // try {
+  //   await savePlant({
+  //     ...plant,
+  //     dateTimeNotification: selectedDateTime,
+  //   });
+
+  // } catch {
+  //   Alert.alert("Não foi possível salvar. 😢");
+  // }
 }
 
   return (
@@ -91,7 +105,7 @@ export function PlantSave() {
             </TouchableOpacity>
           )}
                 
-          <Button title="Cadastrar planta" onPress={() =>{}} />
+                <Button title="Cadastrar planta" onPress={handleSave} />
         </View>
       </View>
     </ScrollView>
