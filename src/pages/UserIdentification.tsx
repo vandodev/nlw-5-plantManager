@@ -1,5 +1,16 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet,View, Text, TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {
+    SafeAreaView,
+     StyleSheet,
+     View,
+     Text,
+     TextInput,
+     KeyboardAvoidingView, 
+     Platform, 
+     TouchableWithoutFeedback, 
+     Keyboard,
+     Alert
+    } from 'react-native';
 
 import {Button} from '../components/Button';
 
@@ -16,6 +27,8 @@ export function UserIdentification(){
 
    
     function handleSubmit() {
+        if(!name)
+        return Alert.alert('Me diz como chamar você 😢');
         navigation.navigate("Confirmation");
       }
 
