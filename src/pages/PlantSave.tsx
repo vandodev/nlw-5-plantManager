@@ -52,17 +52,15 @@ export function PlantSave() {
 }
 
 async function handleSave() {
-  const data = await loadPlant();
-  console.log(data);
-  // try {
-  //   await savePlant({
-  //     ...plant,
-  //     dateTimeNotification: selectedDateTime,
-  //   });
+  try {
+    await savePlant({
+      ...plant,
+      dateTimeNotification: selectedDateTime,
+    });
 
-  // } catch {
-  //   Alert.alert("Não foi possível salvar. 😢");
-  // }
+  } catch {
+    Alert.alert("Não foi possível salvar. 😢");
+  }
 }
 
   return (
