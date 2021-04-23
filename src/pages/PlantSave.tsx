@@ -14,6 +14,7 @@ import { getBottomSpace } from "react-native-iphone-x-helper";
 import { SvgFromUri } from "react-native-svg";
 import DateTimePicker, { Event } from "@react-native-community/datetimepicker";
 import { format, isBefore } from "date-fns";
+import { useNavigation } from '@react-navigation/core';
 
 import waterdrop from "../assets/waterdrop.png";
 import { Button } from "../components/Button";
@@ -31,6 +32,7 @@ export function PlantSave() {
 
  const route = useRoute();
  const {plant} =  route.params as Params;
+ const navigation = useNavigation();
 
  function handleChangeTime(event: Event, dateTime: Date | undefined) {
   if (Platform.OS === "android") {
@@ -57,6 +59,14 @@ async function handleSave() {
       ...plant,
       dateTimeNotification: selectedDateTime,
     });
+
+    navigation.navigate('Confirmation', {
+      title: 'Tudo certo',
+      subtitle: `Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado.`,
+      buttonTitle: "Muito obrigado",
+      icon: "hug",
+      nextScreen: "MyPlants",
+    });  
 
   } catch {
     Alert.alert("Não foi possível salvar. 😢");
