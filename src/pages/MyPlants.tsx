@@ -8,14 +8,13 @@ import { loadPlant, PlantProps } from "../libs/storage";
 import { formatDistance } from "date-fns";
 import { pt } from "date-fns/locale";
 import fonts from "../styles/fonts";
+import { PlantCardSecondary } from "../components/PlantCardSecondary";
 import { Load } from "../components/Load";
 
 export function MyPlants() {
   const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [nextWatered, setNextWatered] = useState<string>();
-
-  
 
   useEffect(() => {
     async function loadStorageData() {
@@ -50,7 +49,18 @@ export function MyPlants() {
 
       <View style={styles.plants}>
         <Text style={styles.plantsTitle}>Próximas regadas</Text>
- 
+
+        <FlatList
+          data={myPlants}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <PlantCardSecondary
+              data={item}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ flex: 1 }}
+        />
       </View>
     </View>
   );
