@@ -18,9 +18,12 @@ const [fontsLoaded] = useFonts({
 
 useEffect(() => {
   async function notifications(){
-    const data = await Notifications.getAllScheduledNotificationsAsync();
-    console.log('##### Notificações agendadas #####');
-    console.log(data);
+  await Notifications.cancelAllScheduledNotificationsAsync();
+
+   const data = await Notifications.getAllScheduledNotificationsAsync();
+   console.log('##### Notificações agendadas #####');
+   console.log(data);
+
   }
   notifications();
 }, [])
